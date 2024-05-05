@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Price Calculator</title>
+</head>
+<body>
+
+<input type="text" id="txt-price" placeholder="Enter the price of the item">
+<input type="text" id="txt-quantity" placeholder="Enter the quantity of the item">
+<button id="btn-submit">Calculate</button>
+<div id="output"></div>
+
+<script>
+  // Get references to the input elements and the output div
+  var priceInput = document.getElementById('txt-price');
+  var quantityInput = document.getElementById('txt-quantity');
+  var submitBtn = document.getElementById('btn-submit');
+  var output = document.getElementById('output');
+
+  // Here an event listener is added to the submit button, so that when it's clicked, a function is executed.
+  submitBtn.addEventListener('click', function () {
+    // Get the values entered in the price and quantity input fields
+    var price = priceInput.value;
+    var quantity = quantityInput.value;
+    // Convert the input values to numbers
+    price = +price;
+    quantity = +quantity;
+    // Check if the input values are not valid numbers
+    if (Number.isNaN(price) || Number.isNaN(quantity)) {
+      output.innerHTML = 'Invalid input'; // Display error message if input is not a number
+      return;
+    }
+    // Calculate the total price
+    var totalPrice = price * quantity;
+    // Rounds the total price
+    totalPrice = Math.round(totalPrice * 100) / 100;
+    // Display the result in the output div
+    output.innerHTML = quantity + ' items at $' + price + ' each is $' + totalPrice;
+  });
+</script>
+
+</body>
+</html>
